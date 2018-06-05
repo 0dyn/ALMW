@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/megamenu.js"></script>
+        <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+        <script src="js/menu_jquery.js"></script>
+        <script src="js/simpleCart.min.js"> </script>
+        </head>
+        <body>
+
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+<div class="row">
+<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3"></div>
+<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6"  style="margin-top: 30px; margin-bottom: 30px; border: 5px solid #cc99cc; background-color: white; padding: 40px 15px 40px 15px">
+
+        <form  id="registration_form" enctype="multipart/form-data" th:action="@{/addProduct}"  action="#" method="post" th:object="${product}" th:objects="${zdjecie}">
+            <h2 style="text-align: center; color: #919191; margin-bottom: 15px"> DODAWANIE NOWEGO PRODUKTU DO BAZY </h2>
+            <div class="form-group">
+            <label for="wydawnictwo"><b>Wydawnictwo</b></label>
+            <input class="form-control" type="text" id="wydawnictwo" th:field="*{wydawnictwo}" placeholder="Wydawnictwo"/> <br/>
+            </div>
+            <div class="form-group">
+            <label for="tytul"><b>Tytuł</b></label>
+            <input class="form-control" type="text" id="tytul" th:field="*{tytul}" placeholder="Tytuł"/><br/>
+            </div>
+            <div class="form-group">
+            <label for="isbn"> <b>ISBN</b></label>
+            <input class="form-control" type="text" id="ISBN" th:field="*{ISBN}" placeholder="ISBN"/><br/>
+			</div>
+			
+			<div class="form-group">
+            <select class="form-control" th:field="*{kategoria}">
+                <option value="Biografie">Biografie</option>
+                <option value="Biznes, Ekonomia, Marketing">Biznes, Ekonomia, Marketing</option>
+                <option value="Dla dzieci">Dla dzieci</option>
+                <option value="Dla młodzieży">Dla młodzieży</option>
+                <option value="Fantastyka">Fantastyka</option>
+                <option value="Horror">Horror</option>
+                <option value="Historia">Historia</option>
+                <option value="Informatyka">Informatyka</option>
+                <option value="Komiks">Komiks</option>
+                <option value="Kryminał, Sensacja, Thriller">Kryminał, Sensacja, Thriller</option>
+                <option value="Książka regionalna">Książka regionalna</option>
+                <option value="Kuchnia i diety">Kuchnia i diety</option>
+                <option value="Lektury, Pomoce szkolne">Lektury, Pomoce szkolne</option>
+                <option value="Literatura faktu, Reportaż">Literatura faktu, Reportaż</option>
+                <option value="Literatura obyczajowa">Literatura obyczajowa</option>
+                <option value="Literatura piękna obca">Literatura piękna obca</option>
+                <option value="Literatura piękna polska">Literatura piękna polska</option>
+                <option value="Nauka języków">Nauka języków</option>
+                <option value="Nauki społeczne i Humanistyczne">Nauki społeczne i Humanistyczne</option>
+                <option value="Nauki ścisłe, Medycyna">Nauki ścisłe, Medycyna</option>
+                <option value="Podręczniki szkolne, Edukacja">Podręczniki szkolne, Edukacja</option>
+                <option value="Poezja, Aforyzm, Dramat">Poezja, Aforyzm, Dramat</option>
+                <option value="Poradnik">Poradniki</option>
+                <option value="Prawo">Prawo</option>
+                <option value="Religie i Wyznania">Religie i Wyznania</option>
+                <option value="Rozwój osobisty">Rozwój osobisty</option>
+                <option value="Sport i Wypoczynek">Sport i Wypoczynek</option>
+                <option value="Sztuka">Sztuka</option>
+                <option value="Turystyka i Podróże">Turystyka i Podróże</option>
+                <option value="Zdrowie, Rodzina, Związki">Zdrowie, Rodzina, Związki</option>
+            </select>
+            </div>
+        	<div class="form-group">
+        	<label for="iloscStron"><b>Ilość stron</b></label>
+            <input  class="form-control"id="iloscStron" type="number" th:field="*{iloscStron}" placeholder="Ilosc Stron"/><br/>
+            </div>
+            <div class="form-group">
+            <label for="opis"><b>Opis</b></label>
+            <textarea maxlength="2048" class="form-control" id="opis" th:field="*{opis}" placeholder="opis"> </textarea> <br />
+            </div>
+            <div class="form-group">
+            <label for="cenaNetto"><b>Cena Netto</b></label>
+            <input  class="form-control" id="cenaNetto" type="number" th:field="*{cenaNetto}" placeholder="Cena Netto"/><br/>
+            </div>
+            <div class="form-group">
+            <label for="cenaBrutto"><b>Cena Brutto</b></label>
+            <input  class="form-control" id="cenaBrutto" type="number" th:field="*{cenaBrutto}" placeholder="Cena Brutto"/><br/>
+            </div>
+            <div class="form-check">
+            <label class="form-check-label">
+   				 <input class="form-check-input" type="checkbox" th:field="*{czyEbook}" value="">
+   				 <b>Ebook</b>
+   		    </label>
+			</div>
+            <div class="form-group">
+                <input type="file" name="plik[]"  multiple="multiple" />
+			</div>
+			<div class="text-right">
+            <input class="btn btn-default" type="submit" value="Dodaj"/>
+            </div>
+
+        </form>
+        </div></div>
+    <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3"></div>
+    </div></div></div>
+        
+</body>
+</html>
