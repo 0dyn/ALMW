@@ -1,0 +1,133 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="template :: head">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div th:replace="template :: header"></div>
+<!-- content -->
+<div class="container">
+<div class="women_main">
+	<!-- start sidebar -->
+	<div class="col-md-3 s-d">
+	  <div class="w_sidebar">
+		<div class="w_nav1">
+			<h4>Wszystkie kategorie</h4>
+			<ul>
+				<li><a th:href="@{/books}">książka</a></li>
+				<li><a th:href="@{/ebooks}">e-book</a></li>
+			</ul>	
+		</div>
+
+		<section  class="sky-form">
+					<h4>Kategorie</h4>
+			<form method="get" th:action="@{/kategoriaBooks}" action="#">
+				<div class="row1 scroll-pane">
+					<div class="col col-4">
+						<label class="checkbox"><input type="radio"   value="Wszystkie" name="word" ><i></i>Wszystkie</label>
+						<label class="checkbox"><input type="radio"  value="Biografie" name="word" ><i></i>biografie</label>
+						<label class="checkbox"><input type="radio" value="Biznes, ekonomia, marketing" name="word"><i></i>biznes, ekonomia, marketing</label>
+						<label class="checkbox"><input type="radio" value="Dla dzieci" name="word"><i></i>dla dzieci</label>
+						<label class="checkbox"><input type="radio" value="Dla młodzieży" name="word"><i></i>dla młodzieży</label>
+						<label class="checkbox"><input type="radio" value="Fantastyka" name="word"><i></i>fantastyka</label>
+						<label class="checkbox"><input value="Horror" type="radio" name="word"><i></i>horroreeers</label>
+						<label class="checkbox"><input value="Historia" type="radio" name="word"><i></i>historia</label>
+						<label class="checkbox"><input value="Informatyka" type="radio" name="word"><i></i>informatyka</label>
+						<label class="checkbox"><input value="Komiks" type="radio" name="word"><i></i>komiks</label>
+						<label class="checkbox"><input value="Kryminał, sensacja, thriller" type="radio" name="word"><i></i>kryminał, sensacja, thriller</label>
+						<label class="checkbox"><input value="Książka regionalna" type="radio" name="word"><i></i>książka regionalna</label>
+						<label class="checkbox"><input value="Kuchnia i diety" type="radio" name="word"><i></i>kuchnia i diety</label>
+						<label class="checkbox"><input value="Lektury, pomoce szkolne" type="radio" name="word"><i></i>lektury, pomoce szkolne</label>
+						<label class="checkbox"><input value="Literatura faktu, reportaż" type="radio" name="word"><i></i>literatura faktu, reportaż</label>
+						<label class="checkbox"><input value="Literatura obyczajowa" type="radio" name="word"><i></i>literatura obyczajowa</label>
+						<label class="checkbox"><input value="Literatura piękna obca" type="radio" name="word" ><i></i>literatura piękna obca</label>
+						<label class="checkbox"><input value="Literatura piękna polska" type="radio" name="word"><i></i>literatura piękna polska</label>
+						<label class="checkbox"><input value="Nauka języków" type="radio" name="checkbox"><i></i>nauka języków</label>
+						<label class="checkbox"><input value="Nauki społeczne i humanistyczne" type="radio" name="word"><i></i>nauki społeczne i humanistyczne</label>
+						<label class="checkbox"><input value="Nauki ścisłe, medycyna" type="radio"name="word"><i></i>nauki ścisłe, medycyna</label>
+						<label class="checkbox"><input value="Podręczniki szkolne, edukacja" type="radio" name="word"><i></i>podręczniki szkolne, edukacja</label>
+						<label class="checkbox"><input value="Poezja, aforyzm, drama" type="radio" name="word"><i></i>poezja, aforyzm, dramat</label>
+						<label class="checkbox"><input value="Poradniki" type="radio" name="word"><i></i>poradniki</label>
+						<label class="checkbox"><input value="Prawo" type="radio" name="word"><i></i>prawo</label>
+						<label class="checkbox"><input value="Religie i wyznani" type="radio" name="word"><i></i>religie i wyznania</label>
+						<label class="checkbox"><input value="Rozwój osobisty" type="radio" name="word"><i></i>rozwój osobist</label>
+						<label class="checkbox"><input value="Sport i wypoczynek" type="radio" name="word"><i></i>sport i wypoczynek</label>
+						<label class="checkbox"><input value="Sztuka" type="radio" name="word"><i></i>sztuka</label>
+						<label class="checkbox"><input value="Turystyka i podróże" type="radio" name="word"><i></i>turystyka i podróże</label>
+						<label class="checkbox"><input value="Zdrowie, Rodzina, Związki" type="radio" name="word"><i></i>zdrowie, rodzina, związki</label>
+					</div>
+				</div>
+				<br/>
+
+
+		</section>
+		  <section  class="sky-form">
+			  <h4>Kryterium</h4>
+			  <div class="row1 scroll-pane">
+				  <div class="col col-4">
+					  <label class="checkbox"><input type="radio"  value="Trafność" name="filter"><i></i>Trafność</label>
+					  <label class="checkbox"><input type="radio" value="Cena rosnąco" name="filter"><i></i>Cena rosnąco</label>
+					  <label class="checkbox"><input type="radio" value="Cena malejąco" name="filter"><i></i>Cena malejąco</label>
+
+
+				  </div>
+			  </div>
+			  <input  class="text-center" type="submit" value="Szukaj książek" />
+			  <br />
+			  <br />
+		  </section>
+
+
+		  </form>
+
+
+	  </div>
+   </div>
+
+
+	<div class="col-md-9 w_content">
+		<div class="grids_of_4">
+			<div  th:each="p: ${products}" class="grid1_of_4" th:object="${p}">
+				<div class="content_box"><a th:href="@{/details(ID=*{ID})}">
+				<img  th:unless="*{zdjecia.isEmpty()}" th:src="*{zdjecia.get(0).getAdres()}"  class="img-responsive-product"  alt=""/>
+					<img th:if="*{zdjecia.isEmpty()}" class="img-responsive-product"  src="/images/brak.jpg"  />
+				</a>
+					<h4><a th:href="@{/details}" th:text="*{tytul}" > Duis autem</a></h4>
+					<p th:text="*{krotkiOpis}">Wspaniały krótki opis produktu</p>
+					<div class="grid_1 simpleCart_shelfItem">
+
+						<div class="item_add"><span class="item_price" th:text="*{cenaBrutto}" ><h6>Tylko 109.00 zł</h6></span></div>
+						<div class="item_add"><span class="item_price"><a href="#">dodaj do koszyka</a></span></div></div><br />
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="clearfix"></div>
+	<h2 th:unless="${filter}" class="text-center"><a class="text-center" th:each="i: ${ile}" th:text="${i}+1" th:href="@{/books(word=${word},page=${i})}"></a></h2>
+	<h2
+			th:if="${filter}" class="text-center"><a th:each="i: ${ile}" th:text="${i}+1" th:href="@{/kategoriaBooks(word=${word},page=${i},filter=${filter})}"></a>
+	</h2>
+
+
+</div>
+
+
+
+
+	
+	<!-- end content -->
+</div>
+</div>
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>

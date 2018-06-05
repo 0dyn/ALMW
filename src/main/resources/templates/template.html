@@ -1,0 +1,353 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:fragment="">
+<title>Rozowa Pianka</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary JavaScript plugins) -->
+<script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+<!-- start menu -->
+<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="js/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<script src="js/menu_jquery.js"></script>
+<script src="js/simpleCart.min.js"> </script>
+</head>
+<body>
+<div th:fragment="header">
+<!-- header_top -->
+<div class="top_bg">
+	<div class="container">
+		<div class="header_top">
+			<div class="top_right">
+				<ul>
+					<li><a href="#">pomoc</a></li>|
+					<li><a th:href="@{/contact}">kontakt</a></li>|
+					<li><a href="#">informacje o dostawie</a></li>
+				</ul>
+			</div>
+			<div class="top_left">
+				<h2><span></span> zadzwoń do nas: 123 456 789</h2>
+			</div>
+				<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- header -->
+<div class="header_bg">
+<div class="container">
+	<div class="header">
+	<div class="head-t">
+		<div class="logo">
+			<a th:href="@{/}"><img src="images/logo-rozowe-pianki-duze.jpg" width="180" class="img-responsive" alt=""/> </a>
+		</div>
+		<!-- start header_right -->
+		<div class="header_right">
+			<div class="rgt-bottom">
+				<div class="log">
+
+					<div th:if="${user}=='anonymousUser'" class="login" >
+						<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
+							<div id="loginBox">
+								<form  id="loginForm" action="processinglogin" th:action="@{/processinglogin}" method="post">
+									<fieldset id="body">
+										<fieldset>
+											<label for="email">adres e-mail</label>
+											<input type="text" name="user"  id="email">
+										</fieldset>
+										<fieldset>
+											<label for="password">hasło</label>
+											<input type="password" name="pass" id="password">
+										</fieldset>
+										<input type="submit" id="login" value="Sign in">
+										<label for="checkbox"><input type="checkbox" id="checkbox"> <i>zapamiętaj mnie</i></label>
+									</fieldset>
+									<span><a href="#">Zapomniałeś hasła?</a></span>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div th:if="${user}!='anonymousUser'">
+					<form th:action="@{logmeout}" method="post" action="#" >
+						<input type="submit" value="Wyloguj" />
+					</form>
+				</div>
+				
+				<div th:if="${admin=='admin'||worker=='worker'}">
+				    <div class="create_btn">
+						<a th:href="@{/admin}">Panel</a>
+					</div>
+				</div>
+				
+				<div th:if="${user == 'user'}">
+							<div class="create_btn">
+								<a th:href="@{/panelUzytkownika}">Moje Konto</a>
+							</div>
+				</div>
+						
+								
+				<div th:if="${user}=='anonymousUser'"   class="reg">
+					<a th:href="@{/register}">ZAREJESTRUJ</a>
+				</div>
+			<div class="cart box_1">
+				<a th:href="@{/checkout}">
+					<h3> <span class="simpleCart_total">0.00 PLN</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> artykułów)<img src="images/bag.png" alt=""></h3>
+				</a>	
+				<p><a href="javascript:;" class="simpleCart_empty">(opróżnij koszyk)</a></p>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="create_btn">
+				<a th:href="@{/checkout}">SPRAWDŹ</a>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="search">
+		    <form method="get" action="#" th:action="@{/search}">
+		    	<input type="text" name="word" value="" placeholder="Wyszukaj...">
+				<input type="submit" value="">
+			</form>
+		</div>
+		<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+		<!-- start header menu -->
+<ul class="megamenu skyblue">
+			<li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" class="grid"><a class="color1" th:href="@{/}">Strona główna</a></li>
+			<li th:classappend="${#httpServletRequest.getRequestURI() == '/books' ? 'active':''}" class="grid"><a class="color2" th:href="@{/books?word=ksiazki}">Książka</a>
+				<div class="megapanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Kategoria</h4>
+								<ul>
+									<li><a th:href="@{/books?word=Biografie}">Biografie</a></li>
+									<li><a th:href="@{/books?word=Biznes, ekonomia, marketing}">Biznes, ekonomia, marketing</a></li>
+									<li><a th:href="@{/books?word=Dla dzieci}">Dla dzieci</a></li>
+									<li><a th:href="@{/books?word=Dla młodzieży}">Dla młodzieży</a></li>
+									<li><a th:href="@{/books?word=Fantastyka}">Fantastyka</a></li>
+								</ul>	
+							</div>							
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								
+								<ul>
+									<li><a th:href="@{/books?word=Horror}">Horror</a></li>
+									<li><a th:href="@{/books?word=Historia}">Historia</a></li>
+									<li><a th:href="@{/books?word=Informatyka}">Informatyka</a></li>
+									<li><a th:href="@{/books?word=Komiks}">Komiks</a></li>
+									<li><a th:href="@{/books?word=Kryminał, sensacja, thriller}">Kryminał, sensacja, thriller</a></li>
+									<li><a th:href="@{/books?word=Książka regionalna}">Książka regionalna</a></li>
+								</ul>	
+							</div>							
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								
+								<ul>
+									<li><a th:href="@{/books?word=Kuchnia i diety}">Kuchnia i diety</a></li>
+									<li><a th:href="@{/books?word=Lektury, pomoce szkolne}">Lektury, pomoce szkolne</a></li>
+									<li><a th:href="@{/books?word=Literatura faktu, reportaż}">Literatura faktu, reportaż</a></li>
+									<li><a th:href="@{/books?word=Literatura obyczajowa}">Literatura obyczajowa</a></li>
+									<li><a th:href="@{/books?word=Literatura piękna obca}">Literatura piękna obca</a></li>
+									<li><a th:href="@{/books?word=Literatura piękna polska}">Literatura piękna polska</a></li>
+								</ul>	
+							</div>												
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								
+								<ul>
+									<li><a th:href="@{/books?word=Nauka języków}">Nauka języków</a></li>
+									<li><a th:href="@{/books?word=Nauki społeczne i humanistyczne}">Nauki społeczne i humanistyczne</a></li>
+									<li><a th:href="@{/books?word=Nauki ścisłe, medycyna}">Nauki ścisłe, medycyna</a></li>
+									<li><a th:href="@{/books?word=Podręczniki szkolne, edukacja}">Podręczniki szkolne, edukacja</a></li>
+									<li><a th:href="@{/books?word=Poezja, aforyzm, dramat}">Poezja, aforyzm, dramat</a></li>
+									<li><a th:href="@{/books?word=Poradniki}">Poradniki</a></li>
+								</ul>	
+							</div>						
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								
+								<ul>
+									<li><a th:href="@{/books?word=Prawo}">Prawo</a></li>
+									<li><a th:href="@{/books?word=Religie i wyznania}">Religie i wyznania</a></li>
+									<li><a th:href="@{/books?word=Rozwój osobisty}">Rozwój osobisty</a></li>
+									<li><a th:href="@{/books?word=Sport i wypoczynek}">Sport i wypoczynek</a></li>
+									<li><a th:href="@{/books?word=Sztuka}">Sztuka</a></li>
+									<li><a th:href="@{/books?word=Turystyka i podróże}">Turystyka i podróże</a></li>
+								</ul>	
+							</div>
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								
+								<ul>
+									<li><a th:href="@{/books?word=Zdrowie, Rodzina, Związki}">Zdrowie, Rodzina, Związki</a></li>
+								</ul>	
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col2"></div>
+						<div class="col1"></div>
+						<div class="col1"></div>
+						<div class="col1"></div>
+						<div class="col1"></div>
+					</div>
+    				</div>
+				</li>
+			<li th:classappend="${#httpServletRequest.getRequestURI() == '/ebooks' ? 'active':''}" class="grid"><a class="color4" th:href="@{/ebooks?word=Wszystkie}">E-book</a>
+				<div class="megapanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Kategoria</h4>
+								<ul>
+									<li><a th:href="@{/ebooks?word=Biografie}">Biografie</a></li>
+									<li><a th:href="@{/ebooks?word=Biznes, ekonomia, marketing}">Biznes, ekonomia, marketing</a></li>
+									<li><a th:href="@{/ebooks?word=Dla dzieci}">Dla dzieci</a></li>
+									<li><a th:href="@{/ebooks?word=Dla młodzieży}">Dla młodzieży</a></li>
+									<li><a th:href="@{/ebooks?word=Fantastyka}">Fantastyka</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+
+								<ul>
+									<li><a th:href="@{/ebooks?word=Horror}">Horror</a></li>
+									<li><a th:href="@{/ebooks?word=Historia}">Historia</a></li>
+									<li><a th:href="@{/ebooks?word=Informatyka}">Informatyka</a></li>
+									<li><a th:href="@{/ebooks?word=Komiks}">Komiks</a></li>
+									<li><a th:href="@{/ebooks?word=Kryminał, sensacja, thriller}">Kryminał, sensacja, thriller</a></li>
+									<li><a th:href="@{/ebooks?word=Książka regionalna}">Książka regionalna</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+
+								<ul>
+									<li><a th:href="@{/ebooks?word=Kuchnia i diety}">Kuchnia i diety</a></li>
+									<li><a th:href="@{/ebooks?word=Lektury, pomoce szkolne}">Lektury, pomoce szkolne</a></li>
+									<li><a th:href="@{/ebooks?word=Literatura faktu, reportaż}">Literatura faktu, reportaż</a></li>
+									<li><a th:href="@{/ebooks?word=Literatura obyczajowa}">Literatura obyczajowa</a></li>
+									<li><a th:href="@{/ebooks?word=Literatura piękna obca}">Literatura piękna obca</a></li>
+									<li><a th:href="@{/ebooks?word=Literatura piękna polska}">Literatura piękna polska</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+
+								<ul>
+									<li><a th:href="@{/ebooks?word=Nauka języków}">Nauka języków</a></li>
+									<li><a th:href="@{/ebooks?word=Nauki społeczne i humanistyczne}">Nauki społeczne i humanistyczne</a></li>
+									<li><a th:href="@{/ebooks?word=Nauki ścisłe, medycyna}">Nauki ścisłe, medycyna</a></li>
+									<li><a th:href="@{/ebooks?word=Podręczniki szkolne, edukacja}">Podręczniki szkolne, edukacja</a></li>
+									<li><a th:href="@{/ebooks?word=Poezja, aforyzm, dramat}">Poezja, aforyzm, dramat</a></li>
+									<li><a th:href="@{/ebooks?word=Poradniki}">Poradniki</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+
+								<ul>
+									<li><a th:href="@{/ebooks?word=Prawo}">Prawo</a></li>
+									<li><a th:href="@{/ebooks?word=Religie i wyznania}">Religie i wyznania</a></li>
+									<li><a th:href="@{/ebooks?word=Rozwój osobisty}">Rozwój osobisty</a></li>
+									<li><a th:href="@{/ebooks?word=Sport i wypoczynek}">Sport i wypoczynek</a></li>
+									<li><a th:href="@{/ebooks?word=Sztuka}">Sztuka</a></li>
+									<li><a th:href="@{/ebooks?word=Turystyka i podróże}">Turystyka i podróże</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+
+								<ul>
+									<li><a th:href="@{/ebooks?word=Zdrowie, Rodzina, Związki}">Zdrowie, Rodzina, Związki</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col2"></div>
+						<div class="col1"></div>
+						<div class="col1"></div>
+						<div class="col1"></div>
+						<div class="col1"></div>
+					</div>
+				</div>
+				</li>				
+				
+				
+		 </ul> 
+	</div>
+</div>
+</div>
+
+
+
+</div>
+
+<div th:fragment="footer">
+<div class="footer">
+	<div class="container">
+		<div class="col-md-3 cust">
+			<h4>INFORMACJE</h4>
+				<li><a href="#">Centrum Pomocy</a></li>
+				<li><a href="#">FAQ</a></li>
+				<li><a href="buy.html">Jak kupić</a></li>
+				<li><a href="#">Dostawa</a></li>
+		</div>
+		<div class="col-md-2 abt">
+			<h4>O NAS</h4>
+				<li><a href="#">Nasze Sklepy</a></li>
+				<li><a href="#">Kariera</a></li>
+				<li><a th:href="@{/contact}">Kontakt</a></li>
+		</div>
+		<div class="col-md-2 myac">
+			<h4>MOJE KONTO</h4>
+				<li><a href="register.html">Rejestracja</a></li>
+				<li><a href="#">Koszyk</a></li>
+				<li><a href="#">Historia Zamówień</a></li>
+				<li><a href="buy.html">Płatność</a></li>
+		</div>
+		<div class="col-md-5 our-st">
+			<div class="our-left">
+				<h4>Nasz Sklep</h4>
+			</div>
+		 <div class="clearfix"> </div>
+				<li><i class="add"> </i>Aleje Racławickie 14, 20-950 Lublin</li>
+				<li><i class="phone"> </i>123456789</li>
+				<li><a href="mailto:info@example.com"><i class="mail"> </i>eksiegarnia@ppe.com </a></li>
+
+		</div>
+		
+	</div>
+</div>
+</div>
+</body>
+</html>
